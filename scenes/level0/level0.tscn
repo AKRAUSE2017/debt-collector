@@ -95,4 +95,4 @@ texture = ExtResource("2_w0xnt")
 shape = SubResource("CircleShape2D_jo1v3")
 
 [node name="Enemy" parent="." instance=ExtResource("4_6uvfq")]
-position = Vector2(480, 96)
+path = [Vector2(864, 96), Vector2(288, 96), Vector2(288, 480), Vector2(864, 480)]

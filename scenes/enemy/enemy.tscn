@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bawrsem8dvppj"]
+[gd_scene load_steps=7 format=3 uid="uid://bawrsem8dvppj"]
 
 [ext_resource type="Script" path="res://scenes/enemy/Enemy.gd" id="1_8l1kd"]
+[ext_resource type="Script" path="res://scenes/enemy/EnemyParams.gd" id="1_d2582"]
 [ext_resource type="Texture2D" uid="uid://cgwuhca5ler8f" path="res://assets/placeholders/enemy.png" id="1_vury5"]
 [ext_resource type="Texture2D" uid="uid://dyonscc8ytey5" path="res://assets/placeholders/vision_cone.png" id="2_kk7ax"]
 [ext_resource type="Script" path="res://scenes/enemy/ConeArea.gd" id="2_udlcn"]
@@ -9,6 +10,7 @@
 radius = 32.0
 
 [node name="Enemy" type="Node2D"]
+script = ExtResource("1_d2582")
 
 [node name="EnemyBody" type="CharacterBody2D" parent="."]
 script = ExtResource("1_8l1kd")
