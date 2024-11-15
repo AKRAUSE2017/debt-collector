@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 const SPEED:int = 200
 const GRIDSPACE:int = 64
 
