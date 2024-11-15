@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED:int = 200
+const SPEED:int = 70
 const GRIDSPACE:int = 64
 
 var travel:Vector2 = Vector2.ZERO
