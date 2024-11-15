@@ -88,3 +88,4 @@ path = [Vector2(864, 96), Vector2(288, 96), Vector2(288, 480), Vector2(864, 480)
 
 [node name="Enemy2" parent="." instance=ExtResource("4_6uvfq")]
 path = [Vector2(544, 224), Vector2(544, 416)]
+
