@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cccm0rbf1x5jj"]
+
+[ext_resource type="Texture2D" uid="uid://cqm6u2wcp0xp7" path="res://assets/tiles/highlight.png" id="1_y21wy"]
+
+[node name="Mouse" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y21wy")

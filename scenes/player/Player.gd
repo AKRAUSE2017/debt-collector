@@ -1,36 +1,45 @@
 extends CharacterBody2D
 
 const SPEED:int = 170
-const GRIDSPACE:int = 128
+const GRIDSPACE:int = 96
 
 var travel:Vector2 = Vector2.ZERO
 var travelEnd:Vector2 = Vector2.ZERO
 
 @onready var animation = $AnimatedSprite2D
+@onready var camera = $Camera2D
+
+func get_input():
+	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D): return "right"
+	elif Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A): return "left"
+	elif Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W): return "up"
+	elif Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S): return "down"
+	return ""
 
 func _ready():
-	self.position = Vector2(64, 64)
+	self.position = Vector2(48, 48)
 
 func _process(_delta):
 	if travel == Vector2.ZERO:
 		animation.flip_h = false
 		animation.play("player_down")
-		if Input.is_action_just_pressed("ui_right"):
+		var input = get_input()
+		if input == "right" and not (self.position.x + GRIDSPACE >= camera.limit_right):
 			travel = Vector2(SPEED,0)
 			travelEnd.x = int(self.position.x + GRIDSPACE)
 			animation.flip_h = false
 			animation.play("player_right")
-		if Input.is_action_just_pressed("ui_left"):
+		if input == "left" and not (self.position.x - GRIDSPACE <= camera.limit_left):
 			travel = Vector2(-SPEED,0)
 			travelEnd.x = int(self.position.x - GRIDSPACE)
 			animation.flip_h = true
 			animation.play("player_right")
-		if Input.is_action_just_pressed("ui_up"):
+		if input == "up" and not (self.position.y - GRIDSPACE <= camera.limit_top):
 			travel = Vector2(0, -SPEED)
 			travelEnd.y = int(self.position.y - GRIDSPACE)
 			animation.flip_h = false
 			animation.play("player_up")
-		if Input.is_action_just_pressed("ui_down"):
+		if input == "down" and not (self.position.y + GRIDSPACE >= camera.limit_bottom):
 			travel = Vector2(0, SPEED)
 			travelEnd.y = int(self.position.y + GRIDSPACE)
 			animation.flip_h = false

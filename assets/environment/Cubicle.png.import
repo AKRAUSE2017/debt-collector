@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biy7pexapatg3"
-path="res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"
+uid="uid://dm6lfjwm8luxu"
+path="res://.godot/imported/Cubicle.png-eaae0d844326084d2af7d27288f601c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/CatSheetRight.png"
-dest_files=["res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"]
+source_file="res://assets/environment/Cubicle.png"
+dest_files=["res://.godot/imported/Cubicle.png-eaae0d844326084d2af7d27288f601c7.ctex"]
 
 [params]
 

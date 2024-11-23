@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biy7pexapatg3"
-path="res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"
+uid="uid://drgpf5jflthwl"
+path="res://.godot/imported/CatSheetBack-export.png-97500e657bf4e4d9a8a4e270059996d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/CatSheetRight.png"
-dest_files=["res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"]
+source_file="res://assets/player/CatSheetBack-export.png"
+dest_files=["res://.godot/imported/CatSheetBack-export.png-97500e657bf4e4d9a8a4e270059996d3.ctex"]
 
 [params]
 
