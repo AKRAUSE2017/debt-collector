@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/level0/Player.gd" id="2_kv6nc"]
 [ext_resource type="Texture2D" uid="uid://cna8rle8fks7w" path="res://assets/placeholders/player.png" id="2_w0xnt"]
 [ext_resource type="PackedScene" uid="uid://bawrsem8dvppj" path="res://scenes/enemy/enemy.tscn" id="4_6uvfq"]
-[ext_resource type="PackedScene" uid="uid://dydfbvnw343fb" path="res://inventory/inv_ui.tscn" id="4_x36xh"]
+[ext_resource type="PackedScene" uid="uid://dydfbvnw343fb" path="res://inv_ui.tscn" id="4_x36xh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q1hq"]
 texture = ExtResource("1_ji0kg")
@@ -96,10 +96,6 @@ texture = ExtResource("2_w0xnt")
 shape = SubResource("CircleShape2D_jo1v3")
 
 [node name="Inv_UI" parent="Player" instance=ExtResource("4_x36xh")]
-offset_left = -35.0
-offset_top = 57.0
-offset_right = 44.0
-offset_bottom = 118.0
 
 [node name="Enemy" parent="." instance=ExtResource("4_6uvfq")]
 path = [Vector2(864, 96), Vector2(288, 96), Vector2(288, 480), Vector2(864, 480)]
