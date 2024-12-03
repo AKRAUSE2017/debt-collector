@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cccm0rbf1x5jj"]
+[gd_scene load_steps=3 format=3 uid="uid://cccm0rbf1x5jj"]
 
+[ext_resource type="Script" path="res://scenes/mouse/mouse.gd" id="1_gg8ip"]
 [ext_resource type="Texture2D" uid="uid://cqm6u2wcp0xp7" path="res://assets/tiles/highlight.png" id="1_y21wy"]
 
 [node name="Mouse" type="Node2D"]
+script = ExtResource("1_gg8ip")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.27451)
 texture = ExtResource("1_y21wy")
