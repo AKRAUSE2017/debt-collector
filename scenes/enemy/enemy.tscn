@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/enemy/Enemy.gd" id="1_8l1kd"]
 [ext_resource type="Script" path="res://scenes/enemy/EnemyParams.gd" id="1_d2582"]
-[ext_resource type="Texture2D" uid="uid://cgwuhca5ler8f" path="res://assets/placeholders/enemy.png" id="1_vury5"]
-[ext_resource type="Texture2D" uid="uid://dyonscc8ytey5" path="res://assets/placeholders/vision_cone.png" id="2_kk7ax"]
+[ext_resource type="Texture2D" uid="uid://bxfpysgrxta77" path="res://assets/placeholders/enemy.png" id="1_vury5"]
+[ext_resource type="Texture2D" uid="uid://cj5k1q47lki7a" path="res://assets/placeholders/vision_cone.png" id="2_kk7ax"]
 [ext_resource type="Script" path="res://scenes/enemy/ConeArea.gd" id="2_udlcn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_23nxo"]

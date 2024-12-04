@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biy7pexapatg3"
-path="res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"
+uid="uid://bvemqnp50aswa"
+path="res://.godot/imported/Carpet.png-d13433a7e341a6240e02e7d14be79ce9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/CatSheetRight.png"
-dest_files=["res://.godot/imported/CatSheetRight.png-20f33ba86f6499130ccc82851a6ff2cb.ctex"]
+source_file="res://assets/tiles/Carpet.png"
+dest_files=["res://.godot/imported/Carpet.png-d13433a7e341a6240e02e7d14be79ce9.ctex"]
 
 [params]
 
