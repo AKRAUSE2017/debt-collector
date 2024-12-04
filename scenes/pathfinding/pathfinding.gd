@@ -1,23 +1,26 @@
 extends Node2D
 
-@export var cellSize = Vector2i(96, 96)
+@onready var cellSize = Vector2(ProjectSettings.get_setting("CELL_SIZE"), ProjectSettings.get_setting("CELL_SIZE"))
 
 var grid = AStarGrid2D.new()
-var start = Vector2(0,0)
-var end = Vector2(384, 384)
+
+var levelSize = Vector2(ProjectSettings.get_setting("LEVEL_WIDTH"), ProjectSettings.get_setting("LEVEL_HEIGHT"))
 
 func _ready():
 	grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	initialize_grid()
 
 func initialize_grid():
-	var gridSize = Vector2i(get_viewport_rect().size) / cellSize
+	var gridSize = levelSize / cellSize
 	grid.size = gridSize
 	grid.cell_size = cellSize
 	grid.offset = cellSize / 2 # calculate from the center
 	grid.update()
 	
-	update_path()
+func update_path(start, end):
+	var path = PackedVector2Array(grid.get_point_path(start, end))
+	$Line2D.points = path
+	return path
 	
-func update_path():
+func show_proposed_path(start, end):
 	$Line2D.points = PackedVector2Array(grid.get_point_path(start, end))

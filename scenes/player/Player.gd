@@ -1,29 +1,39 @@
 extends CharacterBody2D
 
 const SPEED:int = 170
-const GRIDSPACE:int = 96
+@onready var GRIDSPACE:int = ProjectSettings.get_setting("CELL_SIZE")
 
-var travel:Vector2 = Vector2.ZERO
+@export var isFollowingPath:bool = false
+@export var travel:Vector2 = Vector2.ZERO
 var travelEnd:Vector2 = Vector2.ZERO
 
 @onready var animation = $AnimatedSprite2D
 @onready var camera = $Camera2D
 
-func get_input():
-	if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D): return "right"
-	elif Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A): return "left"
-	elif Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W): return "up"
-	elif Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S): return "down"
-	return ""
+@export var path = []
+
+func get_movement():
+	#if Input.is_action_pressed("ui_right") or Input.is_key_pressed(KEY_D): return "right"
+	#elif Input.is_action_pressed("ui_left") or Input.is_key_pressed(KEY_A): return "left"
+	#elif Input.is_action_pressed("ui_up") or Input.is_key_pressed(KEY_W): return "up"
+	#elif Input.is_action_pressed("ui_down") or Input.is_key_pressed(KEY_S): return "down"
+	if len(path) == 0: return "none"
+	var coord = path[0]
+	path.remove_at(0)
+	if coord.x > self.position.x: return "right"
+	elif coord.x < self.position.x: return "left"
+	elif coord.y > self.position.y: return "down"
+	elif coord.y < self.position.y: return "up"
 
 func _ready():
 	self.position = Vector2(48, 48)
 
 func _process(_delta):
-	if travel == Vector2.ZERO:
+	isFollowingPath = len(path) > 0 or not(travel == Vector2.ZERO)
+	if travel == Vector2.ZERO: # if not currently traveling
 		animation.flip_h = false
 		animation.play("player_down")
-		var input = get_input()
+		var input = get_movement()
 		if input == "right" and not (self.position.x + GRIDSPACE >= camera.limit_right):
 			travel = Vector2(SPEED,0)
 			travelEnd.x = int(self.position.x + GRIDSPACE)

@@ -8,6 +8,10 @@
 
 config_version=5
 
+LEVEL_WIDTH=1248
+LEVEL_HEIGHT=768
+CELL_SIZE=96
+
 [application]
 
 config/name="Debt Collector"
@@ -19,3 +23,9 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
+
+[global]
+
+LEVEL_WIDTH=1248
+LEVEL_HEIGHT=768
+CELL_SIZE=96

@@ -1,6 +1,7 @@
-[gd_scene load_steps=65 format=3 uid="uid://d0r3ladhxntk3"]
+[gd_scene load_steps=69 format=3 uid="uid://d0r3ladhxntk3"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_dpx3w"]
+[ext_resource type="Script" path="res://scenes/player/playerController.gd" id="1_yihi7"]
 [ext_resource type="Texture2D" uid="uid://du6d6crovewkm" path="res://assets/player/CatSheetFront-export.png" id="3_j03n4"]
 [ext_resource type="Texture2D" uid="uid://biuoaun5qy8h5" path="res://assets/placeholders/player.png" id="3_jdn2o"]
 [ext_resource type="Texture2D" uid="uid://biy7pexapatg3" path="res://assets/player/CatSheetRight.png" id="3_qsjc7"]
@@ -8,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://r7ch7w8u2ekp" path="res://assets/player/CatSheetBack.png" id="5_7abir"]
 [ext_resource type="Texture2D" uid="uid://crik65mp5ns3l" path="res://assets/player/CatSheetRight-export.png" id="6_nhs76"]
 [ext_resource type="Texture2D" uid="uid://drgpf5jflthwl" path="res://assets/player/CatSheetBack-export.png" id="7_fgrq8"]
+[ext_resource type="Script" path="res://scenes/player/camera.gd" id="9_6x41s"]
+[ext_resource type="PackedScene" uid="uid://cccm0rbf1x5jj" path="res://scenes/mouse/mouse.tscn" id="10_dqnci"]
+[ext_resource type="PackedScene" uid="uid://cfemi2jw5lqtv" path="res://scenes/pathfinding/pathfinding.tscn" id="11_e6trk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nh7f6"]
 atlas = ExtResource("3_r5oew")
@@ -424,6 +428,7 @@ animations = [{
 radius = 32.9848
 
 [node name="Player" type="Node2D"]
+script = ExtResource("1_yihi7")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 collision_mask = 4
@@ -445,5 +450,10 @@ texture = ExtResource("3_jdn2o")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
 limit_top = 0
-limit_right = 1248
-limit_bottom = 768
+limit_right = 0
+limit_bottom = 0
+script = ExtResource("9_6x41s")
+
+[node name="Mouse" parent="." instance=ExtResource("10_dqnci")]
+
+[node name="Pathfinding" parent="." instance=ExtResource("11_e6trk")]

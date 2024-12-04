@@ -1,10 +1,9 @@
 extends Node2D
 
-const GRIDSPACE:int = 96
+@onready var GRIDSPACE:int = ProjectSettings.get_setting("CELL_SIZE")
 
-func _process(delta):
+func _process(_delta):
 	var mouseCoords = get_global_mouse_position()
 	# ceil(mouse/gridsize) * gridsize - gridsize/2
 	self.position.x = ceil(mouseCoords.x/GRIDSPACE) * GRIDSPACE - (GRIDSPACE/2)
 	self.position.y = ceil(mouseCoords.y/GRIDSPACE) * GRIDSPACE - (GRIDSPACE/2)
-	print(self.position.x, self.position.y)
