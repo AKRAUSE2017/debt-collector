@@ -430,24 +430,24 @@ radius = 32.9848
 [node name="Player" type="Node2D"]
 script = ExtResource("1_yihi7")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="PlayerBody" type="CharacterBody2D" parent="."]
 collision_mask = 4
 script = ExtResource("1_dpx3w")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerBody"]
 texture_filter = 1
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_qmgtp")
 animation = &"player_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
 shape = SubResource("CircleShape2D_jo1v3")
 
-[node name="Placeholder_Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Placeholder_Sprite2D" type="Sprite2D" parent="PlayerBody"]
 visible = false
 texture = ExtResource("3_jdn2o")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="PlayerBody"]
 limit_left = 0
 limit_top = 0
 limit_right = 0

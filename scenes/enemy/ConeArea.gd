@@ -5,8 +5,10 @@ extends Area2D
 
 @onready var sprite = $Sprite2D
 
-# Called when the node enters the scene tree for the first time.
+var enemybody
+
 func _ready():
+	enemybody = get_parent()
 	self.connect("body_entered", _on_area_2d_body_entered)
 	self.connect("body_exited", _on_area_2d_body_excited)
 	sprite.set_texture(load(coneSprite))
@@ -16,7 +18,13 @@ func _process(_delta):
 	pass
 
 func _on_area_2d_body_entered(body):
-	if body.name == "Player": sprite.set_texture(load(coneRedSprite))
+	if body.name == "PlayerBody": 
+		sprite.set_texture(load(coneRedSprite))
+		enemybody.inPursuit = true
+		
+		# $PlayerBody.path = path
 
 func _on_area_2d_body_excited(body):
-	if body.name == "Player": sprite.set_texture(load(coneSprite))
+	if body.name == "PlayerBody": 
+		sprite.set_texture(load(coneSprite))
+		

@@ -1,10 +1,12 @@
 extends CharacterBody2D
 
+@export var inPursuit = false
+@export var startPursuitCooldown = false
 
 const SPEED:int = 70
-const GRIDSPACE:int = 64
+var GRIDSPACE:int = ProjectSettings.get_setting("CELL_SIZE")
 
-var travel:Vector2 = Vector2.ZERO
+@export var travel:Vector2 = Vector2.ZERO
 var travelEnd:Vector2 = Vector2.ZERO
 
 var move:bool = false
@@ -17,6 +19,7 @@ var path:Array
 var travelingToIndex:int = 0
 
 var validPath:bool
+var moving: bool = true
 
 func to_radians(degrees:float):
 	return (degrees * PI) / 180
@@ -34,9 +37,11 @@ func set_direction(point:Vector2):
 	elif point.y > self.position.y: direction = Vector2(0,1)
 	elif point.y < self.position.y: direction = Vector2(0,-1)
 
-func set_travel_path_index():
-	if travelingToIndex+1 < len(path): travelingToIndex = travelingToIndex + 1
-	else: travelingToIndex = 0
+func set_travel_path_index(movement_path):
+	if travelingToIndex+1 < len(movement_path): travelingToIndex = travelingToIndex + 1
+	else: 
+		if inPursuit: moving = false
+		travelingToIndex = 0
 
 func check_valid_path():
 	if len(path) == 0: 
@@ -59,7 +64,7 @@ func _ready():
 	if !validPath: return
 	# Initialize enemy position
 	self.position = path[travelingToIndex]
-	set_travel_path_index()
+	set_travel_path_index(path)
 	# Initialize enemy rotation 
 	rotate_towards(path[travelingToIndex])
 	# Initialize traversal variables
@@ -67,8 +72,25 @@ func _ready():
 	move = true
 	
 func _process(delta):
-	if !validPath: return
+	# print(!validPath or !moving)
+	if !validPath or !moving: return
+	if inPursuit: move_toward_player(delta)
+	else: move_on_defined_path(delta, path)
+	
+func move_toward_player(delta):
+	var player = get_parent().get_parent().get_node("Player").get_node("PlayerBody")
+	print("moving to player", player.position)
+	var start = floor(self.position / ProjectSettings.get_setting("CELL_SIZE"))
+	var end = floor(player.position / ProjectSettings.get_setting("CELL_SIZE"))
+	var chasePath = $Pathfinding.update_path(start, end)
+	travelingToIndex = 0
+	move_on_defined_path(delta, chasePath)
+	
+	
+	
+func move_on_defined_path(delta, movement_path):
 	if travel == Vector2.ZERO:
+		print("path", movement_path, travelingToIndex)
 		if move && direction == Vector2(1,0):
 			move = false
 			travel = Vector2(SPEED,0)
@@ -95,12 +117,12 @@ func _process(delta):
 		if (doneTravelRight or doneTravelLeft or doneTravelDown or doneTravelUp) && pauseWalkTimer == 0:
 			self.velocity = Vector2.ZERO
 			self.position = travelEnd
-			var atPointX = (self.position.x <= path[travelingToIndex].x and doneTravelLeft) or (self.position.x >= path[travelingToIndex].x and doneTravelRight)
-			var atPointY = (self.position.y <= path[travelingToIndex].y and doneTravelUp) or (self.position.y >= path[travelingToIndex].y and doneTravelDown)
+			var atPointX = (self.position.x <= movement_path[travelingToIndex].x and doneTravelLeft) or (self.position.x >= movement_path[travelingToIndex].x and doneTravelRight)
+			var atPointY = (self.position.y <= movement_path[travelingToIndex].y and doneTravelUp) or (self.position.y >= movement_path[travelingToIndex].y and doneTravelDown)
 			if atPointX or atPointY: 
-				set_travel_path_index()
-				rotate_towards(path[travelingToIndex])
-				set_direction(path[travelingToIndex])
+				set_travel_path_index(movement_path)
+				rotate_towards(movement_path[travelingToIndex])
+				set_direction(movement_path[travelingToIndex])
 			pauseWalkTimer = pauseWalkTimer + delta
 		elif pauseWalkTimer > 0:
 			pauseWalkTimer = pauseWalkTimer + delta
