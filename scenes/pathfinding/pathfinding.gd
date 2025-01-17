@@ -27,7 +27,7 @@ func add_obstacles(obstacles):
 func update_path(start, end):
 	if(grid.is_in_boundsv(start) and grid.is_in_boundsv(end)):
 		var path = PackedVector2Array(grid.get_point_path(start, end))
-		$Line2D.points = path
+		# $Line2D.points = path
 		# print(path)
 		return path
 	

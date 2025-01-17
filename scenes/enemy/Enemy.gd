@@ -21,6 +21,8 @@ var travelingToIndex:int = 0
 var validPath:bool
 var moving: bool = true
 
+@export var actionCounter = 5
+
 func to_radians(degrees:float):
 	return (degrees * PI) / 180
 
@@ -70,23 +72,24 @@ func _ready():
 	# Initialize traversal variables
 	set_direction(path[travelingToIndex])
 	move = true
+
+func isMyTurn():
+	return self.get_parent().get_parent().activeNode.name == "Enemy"
 	
 func _process(delta):
-	# print(!validPath or !moving)
+	if !isMyTurn(): return
 	if !validPath or !moving: return
 	if inPursuit: move_toward_player(delta)
 	else: move_on_defined_path(delta, path)
 	
 func move_toward_player(delta):
 	var player = get_parent().get_parent().get_node("Player").get_node("PlayerBody")
-	print("moving to player", player.position)
+	# print("moving to player", player.position)
 	var start = floor(self.position / ProjectSettings.get_setting("CELL_SIZE"))
 	var end = floor(player.position / ProjectSettings.get_setting("CELL_SIZE"))
 	var chasePath = $Pathfinding.update_path(start, end)
 	travelingToIndex = 0
 	move_on_defined_path(delta, chasePath)
-	
-	
 	
 func move_on_defined_path(delta, movement_path):
 	if travel == Vector2.ZERO:
@@ -130,5 +133,9 @@ func move_on_defined_path(delta, movement_path):
 				travel = Vector2.ZERO
 				pauseWalkTimer = 0
 				move = true 
+				actionCounter = actionCounter - 1
+				if actionCounter == 0: 
+					self.get_parent().get_parent().nextTurn()
+					actionCounter = 3
 			
 		move_and_slide()

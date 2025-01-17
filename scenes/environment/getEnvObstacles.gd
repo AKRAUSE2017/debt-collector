@@ -3,7 +3,7 @@ extends Node
 func _ready():
 	var children = get_children()
 	var parentLevel = get_parent()
-	print("parent level", parentLevel.name, parentLevel.get_node("Player").name )
+	print("parent level", parentLevel.name, parentLevel.get_node("LevelController").get_node("Player").name )
 	var obstacles = []
 	for child in children:
 		if child.get_class() == "TileMap": continue
